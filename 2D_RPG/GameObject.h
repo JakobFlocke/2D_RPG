@@ -16,11 +16,11 @@ protected:
 public:
 
 	// GameObject(Position pos, int hp, int ap, int level, int xp, Rectangle collider, const char* spriteFile);
-	GameObject(Position pos, int hp, int ap, int level, int xp, Rectangle collider);
-	GameObject(Position pos, Stats stats, Status status, Rectangle collider);
+	// GameObject(Position pos, int hp, int ap, int level, int xp, Rectangle collider);
+	GameObject(Position pos, Stats stats, Rectangle collider);
 
-	void draw();
-	void process();
+	int draw();
+	int process();
 
 	void loadSprite(const char* file);
 

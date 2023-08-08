@@ -10,7 +10,9 @@ Player::Player(Position pos, Stats stats, Race race, int level, int xp, Rectangl
 
 int Player::draw() {
 
+
 	// code
+	DrawRectangle((int) pos.x, (int) pos.y, collider.width, collider.height, BLACK);
 
 	return 0;
 }

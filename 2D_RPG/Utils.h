@@ -21,7 +21,7 @@ enum DIR {
 };
 
 enum STATUS {
-	HP, STAMINA, MANA,
+	HP, STAMINA, MANA, 
 };
 
 
@@ -69,12 +69,12 @@ enum SKILL {
 //* General structs and classes
 struct Position {
 
-	int x;
-	int y;
+	double x;
+	double y;
 
 };
 
-struct Stats {
+class Stats {
 
 private:
 	std::unordered_map<STAT, int> stats;
@@ -85,12 +85,14 @@ public:
 	}
 
 	Stats(int health, int strength, int speed, int endurance, int toughness, int vitality, int wisdome, int intelligence);
-
 };
 
 class Status {
-
+private:
 	std::unordered_map<STATUS, int[]> status;
+
+public:
+	Status(int hp, int stamina, int mana);
 
 	int* operator[](STATUS a) {
 		return status[a];
@@ -115,7 +117,7 @@ private:
 
 };
 
-struct Class {
+class Class {
 
 private:
 	CLASS baseClase;

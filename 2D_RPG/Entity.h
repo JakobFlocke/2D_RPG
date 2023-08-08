@@ -9,25 +9,27 @@ protected:
 
 	void move(DIR direction) {
 
+		double speed = stats[SPEED] * GetFPS() * 0.001;
+
 		switch (direction) {
-		case UP: pos.y -= stats[SPEED]; break;
-		case DOWN: pos.y += stats[SPEED]; break;
-		case LEFT: pos.x -= stats[SPEED]; break;
-		case RIGHT: pos.x += stats[SPEED]; break;
+		case UP: pos.y -= speed; break;
+		case DOWN: pos.y += speed; break;
+		case LEFT: pos.x -= speed; break;
+		case RIGHT: pos.x += speed; break;
 		case UP_LEFT:
-			pos.y -= stats[SPEED];
-			pos.x -= stats[SPEED];
+			pos.y -= speed;
+			pos.x -= speed;
 			break;
 		case UP_RIGHT: break;
-			pos.y -= stats[SPEED];
-			pos.x += stats[SPEED];
+			pos.y -= speed;
+			pos.x += speed;
 		case DOWN_LEFT:
-			pos.y += stats[SPEED];
-			pos.x -= stats[SPEED];
+			pos.y += speed;
+			pos.x -= speed;
 			break;
 		case DOWN_RIGHT:
-			pos.y += stats[SPEED];
-			pos.x += stats[SPEED];
+			pos.y += speed;
+			pos.x += speed;
 			break;
 		default: printf("Error!");
 		}
@@ -36,7 +38,7 @@ protected:
 
 public:
 	//Entity(Position pos, int hp, int ap, int level, int xp, Rectangle collider, const char* spriteFile, int speed);
-	Entity(Position pos, Stats stats, Race race, int level, int xp, Rectangle collider);
+	Entity(Position pos, Stats stats, Status status, Race race, Rectangle collider);
 
 
 };

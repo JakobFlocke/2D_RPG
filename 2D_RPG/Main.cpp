@@ -53,11 +53,9 @@ void load() {
 
     // load
     Class playerClass = {ARCHER, 1, 1};
-
-    Stats stats;
-    stats[HEALTH] = 10;
-    stats[STRENGTH] = 100;
-
+    Stats stats = { 10, 8,12,12, 8, 10, 10, 10 };
+    Status status;
+    Rectangle collider = Rectangle{ 0,0, 10, 10 };
     objs.push_back(std::make_unique<Player>({0, 0}, stats, status, collider));
 
     // draw
