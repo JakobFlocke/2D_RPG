@@ -24,16 +24,35 @@ Status::Status(int hp, int stamina, int mana) {
 	status[MANA][1] = mana;
 }
 
-Class::Class(CLASS baseClass, int level, int stage) {
+Class::Class(CLASS baseClass, Level level) {
 	this->baseClase = baseClass;
 	this->currentClass = baseClass;
 	this->level = level;
-	this->stage = stage;
 }
 
-Class::Class(CLASS baseClass, CLASS currentClass, int level, int stage) {
+Class::Class(CLASS baseClass, CLASS currentClass, Level level) {
 	this->baseClase = baseClass;
 	this->currentClass = currentClass;
 	this->level = level;
+}
+
+Race::Race(RACE race, Level level) {
+	this->race = race;
+	this->level = level;
+}
+
+Profession::Profession(PROFESSION profession, int level, int stage, int xp) {
+	this->profession = profession;
+	this->level = level;
 	this->stage = stage;
+	this->xp = xp;
+	this->main = false;
+}
+
+Profession::Profession(PROFESSION profession, int level, int stage, int xp, bool main) {
+	this->profession = profession;
+	this->level = level;
+	this->stage = stage;
+	this->xp = xp;
+	this->main = main;
 }

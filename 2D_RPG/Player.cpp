@@ -1,8 +1,8 @@
 #include "Player.h"
 #include "Utils.h"
 
-Player::Player(Position pos, Stats stats, Race race, int level, int xp, Rectangle collider)
-	  : Entity(pos, stats, race, level, xp, collider) {
+Player::Player(Position pos, Stats stats, Status status, Race race, Rectangle collider)
+	  : Entity(pos, stats, status, race, collider) {
 
 	// constructor
 

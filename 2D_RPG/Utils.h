@@ -66,11 +66,27 @@ enum SKILL {
 	BASIC_TWO_HANDED_WEAPONS, BASIC_RANGED_WEAPONS, POISONOUS_TOUCH
 };
 
+enum ITEM {
+	SWORD, BOW, 
+};
+
+enum EFFECT {
+	POISON, HEALING
+};
+
 //* General structs and classes
 struct Position {
 
 	double x;
 	double y;
+
+};
+
+struct Level {
+
+	int stage;
+	int level;
+	int xp;
 
 };
 
@@ -102,18 +118,58 @@ public:
 
 
 struct Race {
-
+public:
 	RACE race;
 	// skills
+	Level level;
+
+	Race(RACE race, Level level);
+
+};
+
+struct Damage {
+	int mele;
+	int magic;
+	int mind;
+};
+
+struct Effect {
+	EFFECT effect;
 	int stage;
-	int level;
+	Damage damageP100;
+	Bonus bonuses;
+};
+
+struct Bonus {
+	std::unordered_map<STAT, int[]> status; // [points, procent]
 
 };
 
 struct Skill {
+	SKILL skill;
+	Bonus bonus;
+	int stage;
+};
 
+struct AttackSkill : Skill {
+	ITEM weapon;
+	//Damage damage;
+	Efects effects;
+};
+
+struct Skills {
 private:
-	std::unordered_map<SKILL, int[]> status;
+	std::vector<SKILL> sId;
+	std::unordered_map<SKILL, int[]> skills; // level stage xp
+
+public:
+	int* operator[](SKILL a) {
+		return skills[a];
+	}
+
+	int* operator[](int a) {
+		return skills[sId[a]];
+	}
 
 };
 
@@ -122,17 +178,41 @@ class Class {
 private:
 	CLASS baseClase;
 	CLASS currentClass;
-	int level;
-	int stage;
+	Level level;
 public:
 
-	Class(CLASS baseClass, int level, int stage);
-	Class(CLASS baseClass, CLASS currentClass, int level, int stage);
+	Class(CLASS baseClass, Level level);
+	Class(CLASS baseClass, CLASS currentClass, Level level);
+
+};
+
+struct Profession {
+private:
+public:
+	PROFESSION profession;
+	bool main;
+	int level;
+	int stage;
+	int xp;
+
+	Profession(PROFESSION profession, int level, int stage, int xp);
+	Profession(PROFESSION profession, int level, int stage, int xp, bool main);
 
 };
 
 struct Professions {
 
+private:
+	std::vector<PROFESSION> pId;
+	std::unordered_map<PROFESSION, int[]> professions; // level stage xp
 
+public:
+	int* operator[](PROFESSION a) {
+		return professions[a];
+	}
+
+	int* operator[](int a) {
+		return professions[pId[a]];
+	}
 
 };
