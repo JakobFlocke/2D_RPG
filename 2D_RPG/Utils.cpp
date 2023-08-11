@@ -56,3 +56,19 @@ Profession::Profession(PROFESSION profession, int level, int stage, int xp, bool
 	this->xp = xp;
 	this->main = main;
 }
+
+Effect::Effect(EFFECT effect, const char* name, int stage, Damage damageP100, Bonus bonus) {
+	this->effect = effect;
+	this->name = name;
+	this->stage = stage;
+	this->damageP100 = damageP100;
+	this->bonus = bonus;
+}
+
+Effect::Effect(EFFECT effect, int stage, Damage damageP100, Bonus bonus) {
+	this->effect = effect;
+	this->name = "";
+	this->stage = stage;
+	this->damageP100 = damageP100;
+	this->bonus = bonus;
+}

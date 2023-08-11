@@ -127,6 +127,11 @@ public:
 
 };
 
+struct Bonus {
+	std::unordered_map<STAT, int[]> status; // [points, procent]
+
+};
+
 struct Damage {
 	int mele;
 	int magic;
@@ -135,15 +140,31 @@ struct Damage {
 
 struct Effect {
 	EFFECT effect;
+	const char* name;
 	int stage;
 	Damage damageP100;
-	Bonus bonuses;
+	Bonus bonus;
+public:
+	Effect(EFFECT effect, const char* name, int stage, Damage damageP100, Bonus bonus);
+
+	Effect(EFFECT effect, int stage, Damage damageP100, Bonus bonus);
 };
 
-struct Bonus {
-	std::unordered_map<STAT, int[]> status; // [points, procent]
+struct Effects {
+private:
+	std::vector<Effect> eId;
+	std::unordered_map<Effect, int[]> effects; // level stage xp
 
+public:
+	int* operator[](Effect a) {
+		return effects[a];
+	}
+
+	int* operator[](int a) {
+		return effects[eId[a]];
+	}
 };
+
 
 struct Skill {
 	SKILL skill;
@@ -154,7 +175,7 @@ struct Skill {
 struct AttackSkill : Skill {
 	ITEM weapon;
 	//Damage damage;
-	Efects effects;
+	Effects effects;
 };
 
 struct Skills {
