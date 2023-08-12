@@ -1,7 +1,7 @@
 #include "Player.h"
 #include "Utils.h"
 
-Player::Player(Position pos, Stats stats, Status status, Race race, Rectangle collider)
+Player::Player(Position pos, Stats stats, Status status, Race race, Professions professions, Rectangle collider)
 	  : Entity(pos, stats, status, race, collider) {
 
 	// constructor
@@ -20,7 +20,7 @@ int Player::draw() {
 int Player::process() {
 	
 	// code
-
+	/*
 	// get user input
 	if (IsKeyPressed(KEY_W)) {
 		move(UP);
@@ -34,6 +34,7 @@ int Player::process() {
 	if (IsKeyPressed(KEY_D)) {
 		move(RIGHT);
 	}
+	*/
 
 	return 0;
 }

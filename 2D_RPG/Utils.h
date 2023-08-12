@@ -1,6 +1,7 @@
 #pragma once
 
 #include <unordered_map>
+#include "Entity.h"
 
 //* generall definitions
 #define TILE				16
@@ -74,11 +75,22 @@ enum EFFECT {
 	POISON, HEALING
 };
 
+enum class ACTION_REQ {
+	NONE, MELE, RANGED, ARMOR,
+	HAND, BOW, DAGGER, SHORT_SWORD, SWORD, LONG_SWORD, SPEAR, AXE, HAMMER, STAFF
+
+};
+
 //* General structs and classes
 struct Position {
 
 	double x;
 	double y;
+	int z;
+	
+	Position();
+	Position(double x, double y);
+	Position(double x, double y, int z);
 
 };
 
@@ -90,42 +102,6 @@ struct Level {
 
 };
 
-class Stats {
-
-private:
-	std::unordered_map<STAT, int> stats;
-
-public:
-	int& operator[](STAT stat) {
-		return stats[stat];
-	}
-
-	Stats(int health, int strength, int speed, int endurance, int toughness, int vitality, int wisdome, int intelligence);
-};
-
-class Status {
-private:
-	std::unordered_map<STATUS, int[]> status;
-
-public:
-	Status(int hp, int stamina, int mana);
-
-	int* operator[](STATUS a) {
-		return status[a];
-	}
-
-};
-
-
-struct Race {
-public:
-	RACE race;
-	// skills
-	Level level;
-
-	Race(RACE race, Level level);
-
-};
 
 struct Bonus {
 	std::unordered_map<STAT, int[]> status; // [points, procent]
@@ -164,33 +140,94 @@ public:
 		return effects[eId[a]];
 	}
 };
+/*
+struct Action {
+
+	Entity& user;
+	ACTION_REQ* requierments;
+	Bonus bonus;
+	Effects effects;
+	Damage damage;
+	int stage;
+
+	Action(Entity& user, ACTION_REQ* requierments, Bonus bonus, Effects effects, Damage damage, int stage);
+
+	int use() {
 
 
+
+		return 0;
+	}
+};
+
+struct ATTACK_ACTION : Action{
+
+
+
+};
+
+*/
 struct Skill {
 	SKILL skill;
 	Bonus bonus;
+	Effects effects;
 	int stage;
 };
 
 struct AttackSkill : Skill {
 	ITEM weapon;
-	//Damage damage;
-	Effects effects;
 };
 
 struct Skills {
 private:
 	std::vector<SKILL> sId;
-	std::unordered_map<SKILL, int[]> skills; // level stage xp
+	std::unordered_map<SKILL, Skill> skills; // level stage xp
 
 public:
-	int* operator[](SKILL a) {
+	Skill operator[](SKILL a) {
 		return skills[a];
 	}
 
-	int* operator[](int a) {
+	Skill operator[](int a) {
 		return skills[sId[a]];
 	}
+
+};
+
+class Stats {
+
+private:
+	std::unordered_map<STAT, int> stats;
+
+public:
+	int& operator[](STAT stat) {
+		return stats[stat];
+	}
+
+	Stats();
+	Stats(int health, int strength, int speed, int endurance, int toughness, int vitality, int wisdome, int intelligence);
+};
+
+class Status {
+private:
+	std::unordered_map<STATUS, int*> status; // []
+
+public:
+	Status(int hp, int stamina, int mana);
+	Status();
+
+	int* operator[](STATUS a) {
+		return status[a];
+	}
+
+};
+
+
+struct Race {
+public:
+	RACE race;
+	Skills sills;
+	Level level;
 
 };
 
@@ -202,6 +239,7 @@ private:
 	Level level;
 public:
 
+	Class();
 	Class(CLASS baseClass, Level level);
 	Class(CLASS baseClass, CLASS currentClass, Level level);
 
@@ -216,6 +254,7 @@ public:
 	int stage;
 	int xp;
 
+	Profession();
 	Profession(PROFESSION profession, int level, int stage, int xp);
 	Profession(PROFESSION profession, int level, int stage, int xp, bool main);
 

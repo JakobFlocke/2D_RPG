@@ -52,18 +52,20 @@ int main(void)
 void load() {
 
     // load
-    Class playerClass = {ARCHER, 1, 1};
+    Class class_ = { ARCHER, {1, 1, 0} };
     Stats stats = { 10, 8,12,12, 8, 10, 10, 10 };
     Status status = { 100, 100, 100 };
     Race race = {};
+    Profession profession = {};
     Rectangle collider = Rectangle{ 0,0, 10, 10 };
-    objs.push_back(std::make_unique<Player>(Player{ {0, 0}, stats, status, collider }));
+    //objs.push_back(std::make_unique<Player>(Player{ {0,0,0}, class_, stats, status, race, profession, collider }));
 
     // draw
 
     // process (/)
 
     // input
+
 }
 
 void menu() {

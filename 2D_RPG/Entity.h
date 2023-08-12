@@ -5,8 +5,8 @@
 class Entity : public GameObject {
 protected:
 	Race race;
-	DIR dir;
-
+	// DIR dir;
+	/*
 	void move(DIR direction) {
 
 		double speed = stats[SPEED] * GetFPS() * 0.001;
@@ -34,12 +34,11 @@ protected:
 		default: printf("Error!");
 		}
 
-	}
+	}*/
 
 public:
 	//Entity(Position pos, int hp, int ap, int level, int xp, Rectangle collider, const char* spriteFile, int speed);
 	Entity(Position pos, Stats stats, Status status, Race race, Rectangle collider);
-
-
+	
 };
 

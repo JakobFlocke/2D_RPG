@@ -4,8 +4,7 @@
 #include "Utils.h"
 
 
-class GameObject
-{
+class GameObject {
 protected:
 	Position pos;
 	Stats stats;

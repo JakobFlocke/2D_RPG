@@ -13,6 +13,12 @@ Stats::Stats(int health, int strength, int speed, int endurance, int toughness, 
 	stats[INTELLIGENCE] = intelligence;
 }
 
+Stats::Stats() {
+
+
+
+}
+
 // Status
 // everything full
 Status::Status(int hp, int stamina, int mana) {
@@ -22,6 +28,19 @@ Status::Status(int hp, int stamina, int mana) {
 	status[HP][1] = hp;
 	status[STAMINA][1] = stamina;
 	status[MANA][1] = mana;
+}
+
+Status::Status() {
+
+	status[HP][0] = 50;
+	status[HP][1] = 50;
+
+}
+
+Class::Class() {
+
+
+
 }
 
 Class::Class(CLASS baseClass, Level level) {
@@ -36,9 +55,10 @@ Class::Class(CLASS baseClass, CLASS currentClass, Level level) {
 	this->level = level;
 }
 
-Race::Race(RACE race, Level level) {
-	this->race = race;
-	this->level = level;
+Profession::Profession() {
+
+
+
 }
 
 Profession::Profession(PROFESSION profession, int level, int stage, int xp) {
@@ -72,3 +92,39 @@ Effect::Effect(EFFECT effect, int stage, Damage damageP100, Bonus bonus) {
 	this->damageP100 = damageP100;
 	this->bonus = bonus;
 }
+
+Position::Position() {
+
+	this->x = 0;
+	this->y = 0;
+	this->z = 0;
+
+}
+
+Position::Position(double x, double y) {
+
+	this->x = x;
+	this->y = y;
+	this->z = 0;
+
+}
+
+Position::Position(double x, double y, int z) {
+
+	this->x = x;
+	this->y = y;
+	this->z = z;
+
+}
+/*
+Action::Action(Entity& user, ACTION_REQ* requierments, Bonus bonus, Effects effects, Damage damage, int stage) {
+
+	this->user = user;
+	this->requierments = requierments;
+	this->bonus = bonus;
+	this->effects = effects;
+	this->damage = damage;
+	this->stage = stage;
+
+}
+*/
